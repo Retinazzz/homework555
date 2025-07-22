@@ -1,0 +1,6 @@
+C:\Users\nikgu\source\repos\hm2\hm2\bin\Debug\hm2.exe.config
+C:\Users\nikgu\source\repos\hm2\hm2\bin\Debug\hm2.exe
+C:\Users\nikgu\source\repos\hm2\hm2\bin\Debug\hm2.pdb
+C:\Users\nikgu\source\repos\hm2\hm2\obj\Debug\hm2.csproj.CoreCompileInputs.cache
+C:\Users\nikgu\source\repos\hm2\hm2\obj\Debug\hm2.exe
+C:\Users\nikgu\source\repos\hm2\hm2\obj\Debug\hm2.pdb
