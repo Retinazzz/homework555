@@ -20,75 +20,100 @@ namespace hw3
             _lvl = lvl;
             _nickname = name;
         }
-
-
     }
-
-    class Program
+    public class DataBase
     {
         public static List<Player> Archive = new List<Player>();
-
-        private static int _nextId = 1;
-        private static string _inputedString;
-        private static int _inputedLvl;
-        private static int _selectedOption;
-        static void Main(string[] args)
+    }
+    class Program
+    {
+        static int _nextId = 1;
+        
+        static private void DisplayMenu()
         {
-            //_selectedOption = Console.Read();
-            while(Console.Read() != 0)
+            Console.WriteLine("Choose option:");
+            Console.WriteLine("1 - Add new player");
+            Console.WriteLine("2 - Select Player");
+            Console.WriteLine("0 - End");
+            string line = Console.ReadLine();
+            int _selectedOption = Convert.ToInt32(line);
+            while (line != "0")
             {
-                Console.WriteLine("Choose option:");
-                Console.WriteLine("1 - Add new player");
-                Console.WriteLine("2 - Select Player");
-                Console.WriteLine("0 - End");
-                _selectedOption = Console.Read();
-
-                if (Console.Read() == 1)
+                switch (_selectedOption)
                 {
-                    Console.WriteLine("Write his nickname");
-                    _inputedString = Console.ReadLine();
-                    Console.WriteLine("Write his lvl");
-                    _inputedLvl = Console.Read();
-                    Player added = new Player(_nextId, _inputedString, _inputedLvl);
-                    _nextId++;
-                    Archive.Add(added);
+                    case 1:
+                        {
+                            FirstOption();
+                            DisplayMenu();
+                        }
+                        break;
+
+                    case 2:
+                        {
+                            SecondOption();
+                            DisplayMenu();
+                        }
+                        break;
                 }
-                else if (Console.Read() == 2)
-                {
-                    Console.WriteLine("List of players");
-                    foreach (Player some in Archive)
-                    {
-                        Console.WriteLine(some._id);
-                        Console.WriteLine(some._nickname);
-                        Console.WriteLine(some._lvl);
-                        Console.WriteLine(some._isBanned);
-                        Console.WriteLine("______________________");
-                    }
+            }
+        }
 
-                    Console.WriteLine("Do you want to ban/unban players?");
-                    Console.WriteLine("1 - yes");
-                    Console.WriteLine("2 - no");
-                    _selectedOption = Console.Read();
+        static private void FirstOption()
+        {
+            Console.WriteLine("Write his nickname");
+            string _inputedString = Console.ReadLine();
+            Console.WriteLine("Write his lvl");
+            string line = Console.ReadLine();
+            int _inputedLvl = Convert.ToInt32(line);
+            Player added = new Player(_nextId, _inputedString, _inputedLvl);
+            _nextId++;
+            DataBase.Archive.Add(added);            
+        }
 
-                    if (Console.Read() == 1)
+        static private void SecondOption()
+        {
+            Console.WriteLine("List of players");
+            foreach (Player var in DataBase.Archive)
+            {
+                Console.WriteLine("id "+ var._id);
+                Console.WriteLine("nickname " + var._nickname);
+                Console.WriteLine("lvl " + var._lvl);
+                Console.WriteLine("Is banned " + var._isBanned);
+                Console.WriteLine("______________________");
+            }
+            Console.WriteLine("Do you want to ban/unban players?");
+            Console.WriteLine("1 - yes");
+            Console.WriteLine("2 - no");
+            SelectPlayer();            
+        }
+
+        static private void SelectPlayer()
+        {
+            string line = Console.ReadLine();
+            int option = Convert.ToInt32(line);
+            switch (option)
+            {
+                case 1:
                     {
                         Console.WriteLine("which player?");
-                        _selectedOption = Console.Read();
-                        foreach (Player some in Archive)
+                        string anotherLine = Console.ReadLine();
+                        int selectedPlayer = Convert.ToInt32(anotherLine);
+                        foreach (Player var in DataBase.Archive)
                         {
-                            if (some._id == _selectedOption)
+                            if (var._id == selectedPlayer)
                             {
-                                some._isBanned = !some._isBanned;
+                                var._isBanned = !var._isBanned;
                             }
                         }
                     }
-                    else return;
-                }
-                else return;
+                    break;                 
             }
-            Player first = new Player(_nextId,_inputedString,_inputedLvl);
         }
-              
+
+        static void Main(string[] args)
+        {   
+            DisplayMenu();        
+        }              
     }
          
  }
